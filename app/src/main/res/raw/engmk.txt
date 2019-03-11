@@ -1,0 +1,8 @@
+﻿nail\tшајка
+nail\tнокт
+bark\tкора
+bark\tлаење
+pool\tбазен
+pool\tбилијардо
+racket\tрекет
+racket\tбучава
