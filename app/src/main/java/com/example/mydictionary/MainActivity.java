@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//procitaj ja listata
+//procitaj ja listat
         try {
             FileInputStream fis = context.openFileInput("engmk.txt");
             InputStreamReader isr = new InputStreamReader(fis);
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,14 +85,11 @@ public class MainActivity extends AppCompatActivity {
                 listView.setAdapter(adapter);
             }
         });
-
-
     }
 
     public void openInsertLayout(View view) {
         Intent intent = new Intent(this, InsertWordActivity.class);
         startActivity(intent);
     }
-
 }
 

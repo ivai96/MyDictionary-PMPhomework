@@ -1,5 +1,6 @@
 package com.example.mydictionary;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class InsertWordActivity extends AppCompatActivity {
                 String fileContents = "\n" + enterText1.getText().toString() + "\t" + enterText2.getText().toString() + "\n";
 
                 try {
-                    FileOutputStream fOut = openFileOutput(file, getApplicationContext().MODE_APPEND);
+                    FileOutputStream fOut = openFileOutput(file, Context.MODE_APPEND);
                     fOut.write(fileContents.getBytes());
                     fOut.close();
                     Toast.makeText(getBaseContext(), "Word Saved", Toast.LENGTH_SHORT).show();
