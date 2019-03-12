@@ -1,5 +1,6 @@
 package com.example.mydictionary;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,24 +11,27 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    String[] getWords;
+    String getWords[];
+    ArrayList<String> wordsFromFile = new ArrayList<>();
     Button searchBtn;
     ArrayList<String> showList = new ArrayList<>();
 
-    InputStream inputStreamCounter;
-    BufferedReader bufferedReaderCounter;
 
-    InputStream inputStreamLoader;
-    BufferedReader bufferedReaderLoader;
+    String fileName = "engmk.txt";
+    String[] words = new String[]{"nail\tшајка", "\nnail\tнокт", "\nbark\tкора",
+            "\nbark\tлаење", "\npool\tбазен", "\npool\tбилијардо", "\nracket\tрекет", "\nracket\tбучава"};
     int counter = 0;
 
     @Override
@@ -35,60 +39,61 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = findViewById(R.id.myListView);
-        searchBtn = findViewById(R.id.search_btn);
+        Context context = getApplicationContext();
         final EditText insertedWord = findViewById(R.id.word_edit_text);
+        searchBtn = findViewById(R.id.search_btn);
+        listView = findViewById(R.id.myListView);
 
-        inputStreamCounter = this.getResources().openRawResource(R.raw.engmk);
-        bufferedReaderCounter = new BufferedReader(new InputStreamReader(inputStreamCounter));
-
-        inputStreamLoader = this.getResources().openRawResource(R.raw.engmk);
-        bufferedReaderLoader = new BufferedReader(new InputStreamReader(inputStreamLoader));
-
-        //count the number of rows or lines in txt
+        FileOutputStream fileOutputStream;
+//zapisi ja listata vo txt
         try {
-            while (bufferedReaderCounter.readLine() != null) {
-                counter++;
+            fileOutputStream = openFileOutput(fileName, Context.MODE_APPEND);
+            for (String s : words) {
+                fileOutputStream.write(s.getBytes());
+            }
+            fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//procitaj ja listata
+        try {
+            FileInputStream fis = context.openFileInput("engmk.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                wordsFromFile.add(line + System.getProperty("line.separator"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        getWords = new String[counter];
-
-        try {
-            for (int i = 0; i < counter; i++) {
-                getWords[i] = bufferedReaderLoader.readLine().replace("\\t", "\t\t");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showList.clear();
                 String word = insertedWord.getText().toString();
-                for (int i = 0; i < getWords.length; i++) {
-                    if (getWords[i].contains(word) && ! (word.equals(""))) {
-                        showList.add(getWords[i]);
+                for (String s : wordsFromFile) {
+                    if (s.contains(word) && !(word.equals(""))) {
+                        showList.add(s);
                     }
                 }
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, showList);
                 listView.setAdapter(adapter);
-
-
             }
         });
 
 
     }
 
-    public void openInsertLayout(View view)
-    {
+    public void openInsertLayout(View view) {
         Intent intent = new Intent(this, InsertWordActivity.class);
         startActivity(intent);
     }
 
 }
+
