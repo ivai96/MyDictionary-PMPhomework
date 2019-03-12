@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 public class InsertWordActivity extends AppCompatActivity {
 
@@ -28,8 +32,8 @@ public class InsertWordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insert_word);
 
         writeBtn = findViewById(R.id.insertBtn);
-        enterText1 = findViewById(R.id.mk_edit_text);
-        enterText2 = findViewById(R.id.eng_edit_text);
+        enterText1 = findViewById(R.id.eng_edit_text);
+        enterText2 = findViewById(R.id.mk_edit_text);
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,8 +42,9 @@ public class InsertWordActivity extends AppCompatActivity {
 
                 try {
                     FileOutputStream fOut = openFileOutput(file, Context.MODE_APPEND);
-                    fOut.write(fileContents.getBytes());
-                    fOut.close();
+                    Writer w = new BufferedWriter(new OutputStreamWriter(fOut, StandardCharsets.UTF_8));
+                    w.write(fileContents);
+                    w.close();
                     Toast.makeText(getBaseContext(), "Word Saved", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
