@@ -24,16 +24,14 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    String getWords[];
     ArrayList<String> wordsFromFile = new ArrayList<>();
     Button searchBtn;
     ArrayList<String> showList = new ArrayList<>();
 
 
     String fileName = "engmk.txt";
-    String[] words = new String[]{"nail\tшајка", "\nnail\tнокт", "\nbark\tкора",
-            "\nbark\tлаење", "\npool\tбазен", "\npool\tбилијардо", "\nracket\tрекет", "\nracket\tбучава"};
-    int counter = 0;
+    String[] words = new String[]{"nail\t\t\tшајка", "\nnail\t\t\tнокт", "\nbark\t\t\tкора",
+            "\nbark\t\t\tлаење", "\npool\t\t\tбазен", "\npool\t\t\tбилијардо", "\nracket\t\t\tрекет", "\nracket\t\t\tбучава"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

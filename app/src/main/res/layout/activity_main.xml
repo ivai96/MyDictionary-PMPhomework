@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -18,28 +17,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
-            android:weightSum="3">
+            android:weightSum="3"
+            android:paddingBottom="26dp">
 
             <EditText
                 android:id="@+id/word_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="Enter word" />
+                android:hint="@string/entertWord"
+                android:inputType="text"/>
 
             <Button
                 android:id="@+id/search_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Search" />
+                android:text="@string/search"
+                android:textColor="#03AE3C" />
         </LinearLayout>
 
         <ListView
             android:id="@+id/myListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="#000000"
+            android:divider="@android:color/holo_red_dark"
             android:dividerHeight="2dp"></ListView>
     </LinearLayout>
 
@@ -47,7 +49,7 @@
         android:id="@+id/addNewWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/linearLayout"
+        android:layout_alignEnd="@id/linearLayout"
         android:layout_alignBottom="@id/linearLayout"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"

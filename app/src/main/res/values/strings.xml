@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyDictionary</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
+    <string name="enterNew">Insert new word</string>
+    <string name="entertMk">Enter the corresponding Macedonian translation:</string>
+    <string name="entertEng">Enter an English word:</string>
+    <string name="entertWord">Enter word</string>
+
 </resources>

@@ -38,7 +38,7 @@ public class InsertWordActivity extends AppCompatActivity {
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fileContents = "\n" + enterText1.getText().toString() + "\t" + enterText2.getText().toString() + "\n";
+                String fileContents = "\n" + enterText1.getText().toString() + "\t\t\t" + enterText2.getText().toString() + "\n";
 
                 try {
                     FileOutputStream fOut = openFileOutput(file, Context.MODE_APPEND);
