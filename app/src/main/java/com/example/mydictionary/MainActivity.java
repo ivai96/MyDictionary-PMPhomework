@@ -1,5 +1,6 @@
 package com.example.mydictionary;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -86,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void openInsertLayout(View view)
     {
-        int heloo = 1;
+        Intent intent = new Intent(this, InsertWordActivity.class);
+        startActivity(intent);
     }
 
 }
