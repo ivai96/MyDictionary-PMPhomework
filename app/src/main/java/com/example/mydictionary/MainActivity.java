@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -45,17 +46,21 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.myListView);
 
         FileOutputStream fileOutputStream;
+
+        File file = getBaseContext().getFileStreamPath(fileName);
+        if (!file.exists()) {
 //zapisi ja listata vo txt
-        try {
-            fileOutputStream = openFileOutput(fileName, Context.MODE_APPEND);
-            for (String s : words) {
-                fileOutputStream.write(s.getBytes());
+            try {
+                fileOutputStream = openFileOutput(fileName, Context.MODE_APPEND);
+                for (String s : words) {
+                    fileOutputStream.write(s.getBytes());
+                }
+                fileOutputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-//procitaj ja listat
+//procitaj ja listata
         try {
             FileInputStream fis = context.openFileInput("engmk.txt");
             InputStreamReader isr = new InputStreamReader(fis);
