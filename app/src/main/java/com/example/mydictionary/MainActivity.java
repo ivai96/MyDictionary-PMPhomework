@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     Button searchBtn;
     ArrayList<String> showList = new ArrayList<>();
 
-
     InputStream inputStreamCounter;
     BufferedReader bufferedReaderCounter;
 
@@ -83,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void openInsertLayout(View view)
+    {
+        int heloo = 1;
     }
 
 }
