@@ -1,8 +1,7 @@
 package com.example.mydictionary;
 
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,24 +29,19 @@ public class SearchFragment extends Fragment {
     ArrayList<String> showList = new ArrayList<>();
     Button searchBtn;
     EditText insertedWord;
-
-    //  @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        Bundle bundle = getArguments();
-//        zemiLista = bundle.getStringArrayList("listata");
-//    }
+    ListView listView;
+    Button addNewBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        searchBtn = view.findViewById(R.id.search_btn);
-        insertedWord = view.findViewById(R.id.word_edit_text);
 
-        ListView lw = view.findViewById(R.id.myListView);
+        insertedWord = view.findViewById(R.id.word_edit_text);
+        searchBtn = view.findViewById(R.id.search_btn);
+        listView = view.findViewById(R.id.myListView);
+        addNewBtn = view.findViewById(R.id.openInsertActivity);
 
         FileModifier fm = new FileModifier(getActivity());
         fm.writeWordsToFile();
@@ -68,11 +62,17 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, showList);
-        lw.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, showList);
+        listView.setAdapter(adapter);
+
+        addNewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), InsertWordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
-
-
 }
