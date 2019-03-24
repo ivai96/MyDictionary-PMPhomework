@@ -39,32 +39,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Context context = getApplicationContext();
+        SearchFragment sf = new SearchFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, sf).commit();
 
         insertedWord = findViewById(R.id.word_edit_text);
         searchBtn = findViewById(R.id.search_btn);
-        listView = findViewById(R.id.myListView);
+       // listView = findViewById(R.id.myListView);
 
         FileModifier fm = new FileModifier(this);
         fm.writeWordsToFile();
         wordsFromFile = fm.readWordsFromFile();
 
-
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showList.clear();
-                String word = insertedWord.getText().toString();
-                for (String s : wordsFromFile) {
-                    if (s.contains(word) && !(word.equals(""))) {
-                        showList.add(s);
-                    }
-                }
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, showList);
-                listView.setAdapter(adapter);
-            }
-        });
+//
+//        searchBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showList.clear();
+//                String word = insertedWord.getText().toString();
+//                for (String s : wordsFromFile) {
+//                    if (s.contains(word) && !(word.equals(""))) {
+//                        showList.add(s);
+//                    }
+//                }
+//
+//               // ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, showList);
+//                //listView.setAdapter(adapter);
+//            }
+//        });
     }
 
     public void openInsertLayout(View view) {
