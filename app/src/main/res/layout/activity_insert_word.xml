@@ -1,52 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".InsertWordActivity"
-    android:padding="16dp">
+    android:padding="8dp"
+    android:id="@+id/container2">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entertEng"
-        android:textSize="22sp"
-        android:textColor="@android:color/primary_text_light_nodisable"/>
-
-    <EditText
-        android:id="@+id/eng_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
-        android:inputType="text"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/entertMk"
-        android:textSize="22sp"
-        android:textColor="@android:color/primary_text_light_nodisable"/>
-
-    <EditText
-        android:id="@+id/mk_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
-        android:inputType="text"/>
-
-    <Button
-        android:id="@+id/insertBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/enterNew"
-        android:textColor="#03AE3C"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/back"
-        android:onClick="goBack"
-        android:textColor="#03AE3C"
-        />
-</LinearLayout>
+</RelativeLayout>

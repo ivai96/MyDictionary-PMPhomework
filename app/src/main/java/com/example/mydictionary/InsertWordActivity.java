@@ -20,33 +20,14 @@ import java.nio.charset.StandardCharsets;
 
 public class InsertWordActivity extends AppCompatActivity {
 
-    private Button writeBtn;
-    private EditText enterText1;
-    private EditText enterText2;
-
-    FileModifier fm = new FileModifier(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_word);
 
-        writeBtn = findViewById(R.id.insertBtn);
-        enterText1 = findViewById(R.id.eng_edit_text);
-        enterText2 = findViewById(R.id.mk_edit_text);
-
-        writeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fileContents = "\n" + enterText1.getText().toString() + "\t\t\t" + enterText2.getText().toString() + "\n";
-                fm.addNewWordsToFile(fileContents);
-            }
-        });
-    }
-
-    public void goBack(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        InsertWordFragment iwf = new InsertWordFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.container2, iwf).commit();
     }
 
 }
