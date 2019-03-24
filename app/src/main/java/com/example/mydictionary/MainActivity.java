@@ -18,8 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> wordsFromFile = new ArrayList<>();
     Button searchBtn;
     ArrayList<String> showList = new ArrayList<>();
+
+    EditText insertedWord;
 
 
     String fileName = "engmk.txt";
@@ -39,39 +40,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Context context = getApplicationContext();
-        final EditText insertedWord = findViewById(R.id.word_edit_text);
+
+        insertedWord = findViewById(R.id.word_edit_text);
         searchBtn = findViewById(R.id.search_btn);
         listView = findViewById(R.id.myListView);
 
-        FileOutputStream fileOutputStream;
+        FileModifier fm = new FileModifier(this);
+        fm.writeWordsToFile();
+        wordsFromFile = fm.readWordsFromFile();
 
-        File file = getBaseContext().getFileStreamPath(fileName);
-        if (!file.exists()) {
-//zapisi ja listata vo txt
-            try {
-                fileOutputStream = openFileOutput(fileName, Context.MODE_APPEND);
-                for (String s : words) {
-                    fileOutputStream.write(s.getBytes());
-                }
-                fileOutputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-//procitaj ja listata
-        try {
-            FileInputStream fis = context.openFileInput("engmk.txt");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                wordsFromFile.add(line + System.getProperty("line.separator"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override

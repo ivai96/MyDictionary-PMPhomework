@@ -23,8 +23,8 @@ public class InsertWordActivity extends AppCompatActivity {
     private Button writeBtn;
     private EditText enterText1;
     private EditText enterText2;
-    //  InputStream nesto = this.getResources().openRawResource(R.raw.engmk);
-    String file = "engmk.txt";
+
+    FileModifier fm = new FileModifier(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +39,7 @@ public class InsertWordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String fileContents = "\n" + enterText1.getText().toString() + "\t\t\t" + enterText2.getText().toString() + "\n";
-
-                try {
-                    FileOutputStream fOut = openFileOutput(file, Context.MODE_APPEND);
-                    Writer w = new BufferedWriter(new OutputStreamWriter(fOut, StandardCharsets.UTF_8));
-                    w.write(fileContents);
-                    w.close();
-                    Toast.makeText(getBaseContext(), "Word Saved", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                fm.addNewWordsToFile(fileContents);
             }
         });
     }
