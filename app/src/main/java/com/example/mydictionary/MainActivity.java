@@ -16,34 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addFragment();
-
-
     }
 
     private void addFragment() {
-        FragmentManager manager = getSupportFragmentManager();
-
         SearchFragment searchFragment = new SearchFragment();
-
-        int orientation = getResources().getConfiguration().orientation;
-
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            // In portrait
-//            Fragment f = manager.findFragmentById(R.id.landscape);
-//            if(f!=null)
-//            {
-//                manager.beginTransaction().remove(f).commit();
-//            }
-            getSupportFragmentManager().beginTransaction().add(R.id.container, searchFragment).commit();
-        } else {
-            // In landscape
-//            Fragment f = manager.findFragmentById(R.id.portrait);
-//            if(f!=null)
-//            {
-//                manager.beginTransaction().remove(f).commit();
-//            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).commit();
-        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).commit();
     }
 
 }

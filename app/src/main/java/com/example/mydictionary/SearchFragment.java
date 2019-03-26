@@ -46,6 +46,7 @@ public class SearchFragment extends Fragment {
         FileModifier fm = new FileModifier(getActivity());
         fm.writeWordsToFile();
         wordsFromFile = fm.readWordsFromFile();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, showList);
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +59,11 @@ public class SearchFragment extends Fragment {
 
                     }
                 }
+                adapter.notifyDataSetChanged();
                 insertedWord.onEditorAction(EditorInfo.IME_ACTION_DONE);
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, showList);
         listView.setAdapter(adapter);
 
         addNewBtn.setOnClickListener(new View.OnClickListener() {
