@@ -25,7 +25,7 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:text="@string/entertEng"
-                android:textColor="@android:color/primary_text_light_nodisable"
+                android:textColor="@color/green"
                 android:textSize="22sp" />
 
             <EditText
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="@string/entertMk"
-                android:textColor="@android:color/primary_text_light_nodisable"
+                android:textColor="@color/green"
                 android:textSize="22sp" />
 
             <EditText
@@ -65,14 +65,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/enterNew"
-            android:textColor="#03AE3C" />
+            android:textColor="@color/green" />
 
         <Button
             android:id="@+id/goBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/back"
-            android:textColor="#03AE3C" />
+            android:textColor="@color/green" />
     </LinearLayout>
 
 </FrameLayout>
