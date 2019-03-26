@@ -27,7 +27,7 @@ public class InsertWordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insert_word);
 
         InsertWordFragment iwf = new InsertWordFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.container2, iwf).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container2, iwf).commit();
     }
 
 }
